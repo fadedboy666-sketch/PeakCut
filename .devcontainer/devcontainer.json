@@ -1,0 +1,12 @@
+{
+  "name": "peakcut",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "containerEnv": {
+    "PEAKCUT_HOST": "0.0.0.0",
+    "PEAKCUT_PORT": "8765",
+    "PEAKCUT_TRUST_PROXY": "1"
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ffmpeg && pip install -r requirements.txt && python -m studio.fetch_model",
+  "postAttachCommand": "nohup python -m studio.server > /tmp/peakcut.log 2>&1 &",
+  "forwardPorts": [8765]
+}
